@@ -14,8 +14,9 @@
   color-scheme: dark;
 }
 
+/* The app passes ?theme= so the page follows its own theme setting, not just the system. */
 @media (prefers-color-scheme: light) {
-  :root {
+  :root:not(.dark) {
     --bg-top: #f8fbfe;
     --bg-bottom: #e3eef7;
     --card: rgba(255, 255, 255, .72);
@@ -29,6 +30,20 @@
     --on-accent: #ffffff;
     color-scheme: light;
   }
+}
+:root.light {
+  --bg-top: #f8fbfe;
+  --bg-bottom: #e3eef7;
+  --card: rgba(255, 255, 255, .72);
+  --card-edge: rgba(195, 212, 229, .7);
+  --text: #2a3648;
+  --muted: #56677d;
+  --heading: #0d1626;
+  --cyan: #009fc2;
+  --magenta: #d1239c;
+  --lime: #4a9e00;
+  --on-accent: #ffffff;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
