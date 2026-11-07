@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cocktail lab · MixLab</title>
+<meta name="description" content="MixLab: what can you mix with the bottles you own?">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>if (/[?&]app=1/.test(location.search)) document.documentElement.className = 'in-app';</script>
+</head>
+<body>
+<div class="bloom" aria-hidden="true"></div>
+<main>
+<header class="hero">
+<img src="icon.png" alt="" width="72" height="72" class="logo">
+<div>
+<p class="app">MIXLAB</p>
+<h1><span data-lang="en">Your home cocktail lab</span><span data-lang="tr" lang="tr" hidden>Evdeki kokteyl laboratuvarın</span></h1>
+</div>
+</header>
+<div class="tabs" role="tablist" aria-label="Language"><button type="button" role="tab" data-lang="en" aria-selected="false">EN</button><button type="button" role="tab" data-lang="tr" aria-selected="false">TR</button></div>
+<section class="card" data-lang="en" lang="en">
+<p class="lead">Great cocktails from the bottles you already own: smart swaps, a mood matcher, a party planner and a fix for drinks that went wrong.</p>
+<p><a class="button" href="support.html">Support</a> <a class="button" href="privacy.html">Privacy Policy</a></p>
+</section>
+<section class="card" data-lang="tr" lang="tr" hidden>
+<p class="lead">Elindeki şişelerle harika kokteyller: akıllı alternatifler, ruh haline göre eşleştirme, parti planlayıcı ve kötü giden içkiler için kurtarma önerileri.</p>
+<p><a class="button" href="support.html">Destek</a> <a class="button" href="privacy.html">Gizlilik Politikası</a></p>
+</section>
+</main>
+<footer>
+<p>MixLab · <a href="mailto:support@aralbenli.com">support@aralbenli.com</a></p>
+<nav><a href="privacy.html">Privacy</a><a href="support.html">Support</a></nav>
+</footer>
+<script>
+(function () {
+  var codes = ['en', 'tr'];
+  var tabs = document.querySelectorAll('.tabs button');
+  function show(code) {
+    if (codes.indexOf(code) < 0) code = 'en';
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', t.dataset.lang === code); });
+    document.querySelectorAll('[data-lang]:not(button)').forEach(function (s) { s.hidden = s.dataset.lang !== code; });
+    document.documentElement.lang = code;
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { history.replaceState(null, '', location.search + '#' + t.dataset.lang); show(t.dataset.lang); });
+  });
+  // The app passes ?lang=; a shared link can carry #tr; otherwise follow the browser.
+  var param = (location.search.match(/[?&]lang=([a-z]{2})/) || [])[1];
+  var hash = location.hash.slice(1);
+  var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+  show(param || (codes.indexOf(hash) >= 0 ? hash : nav));
+})();
+</script>
+</body>
+</html>

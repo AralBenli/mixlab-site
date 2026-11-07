@@ -1,0 +1,209 @@
+/* Palette from core/designsystem/.../theme/Color.kt */
+:root {
+  --bg-top: #0e131d;
+  --bg-bottom: #05070c;
+  --card: rgba(255, 255, 255, .05);
+  --card-edge: rgba(255, 255, 255, .09);
+  --text: #c9d1e0;
+  --muted: #8d97ad;
+  --heading: #eaf0fa;
+  --cyan: #22e6ff;
+  --magenta: #ff3dcb;
+  --lime: #b8ff5c;
+  --on-accent: #05070c;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-top: #f8fbfe;
+    --bg-bottom: #e3eef7;
+    --card: rgba(255, 255, 255, .72);
+    --card-edge: rgba(195, 212, 229, .7);
+    --text: #2a3648;
+    --muted: #56677d;
+    --heading: #0d1626;
+    --cyan: #009fc2;
+    --magenta: #d1239c;
+    --lime: #4a9e00;
+    --on-accent: #ffffff;
+    color-scheme: light;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--bg-top) 0, var(--bg-bottom) 70vh) fixed;
+  color: var(--text);
+  font: 16px/1.65 "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Soft neon blooms behind the content */
+.bloom {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(420px 320px at 12% 0%, rgba(34, 230, 255, .16), transparent 70%),
+    radial-gradient(380px 300px at 95% 18%, rgba(255, 61, 203, .13), transparent 70%);
+}
+
+main, footer {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 40px 0 24px;
+}
+.logo {
+  border-radius: 18px;
+  box-shadow: 0 0 0 1px var(--card-edge), 0 8px 28px rgba(34, 230, 255, .25);
+}
+.app {
+  margin: 0 0 6px;
+  font: 600 12px/1 "Space Grotesk", sans-serif;
+  letter-spacing: 3px;
+  color: var(--cyan);
+}
+h1, h2 {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  color: var(--heading);
+  line-height: 1.25;
+}
+h1 { margin: 0; font-size: clamp(24px, 6vw, 34px); }
+h2 { margin: 0 0 14px; font-size: 20px; }
+h3 {
+  margin: 28px 0 8px;
+  font: 600 17px/1.4 "Space Grotesk", sans-serif;
+  color: var(--heading);
+}
+h3::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  vertical-align: 2px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+h4 { margin: 16px 0 4px; font-size: 15px; color: var(--heading); }
+
+.card {
+  margin: 0 0 18px;
+  padding: 24px;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+  border-radius: 22px;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+.card > :last-child { margin-bottom: 0; }
+
+.updated {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 4px 12px;
+  font-size: 13px;
+  border-radius: 999px;
+  color: var(--on-accent);
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+}
+
+.lead { font-size: 17px; margin-top: 0; }
+.muted { color: var(--muted); font-size: 14px; }
+
+ul { padding-left: 0; list-style: none; }
+li { position: relative; padding-left: 20px; margin: 6px 0; }
+li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: .72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--magenta);
+}
+
+a { color: var(--cyan); text-underline-offset: 3px; overflow-wrap: anywhere; }
+strong { color: var(--heading); }
+
+.tabs {
+  display: inline-flex;
+  gap: 4px;
+  margin: 0 0 20px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--card-edge);
+}
+.tabs button {
+  font: 600 13px/1 "Space Grotesk", sans-serif;
+  letter-spacing: 1px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--muted);
+  background: transparent;
+}
+.tabs button[aria-selected="true"] {
+  color: var(--on-accent);
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+}
+.tabs button:focus-visible, .button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.button {
+  display: inline-block;
+  margin: 4px 8px 4px 0;
+  padding: 12px 20px;
+  font: 600 15px/1.3 "Space Grotesk", sans-serif;
+  border-radius: 999px;
+  color: var(--on-accent);
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+  text-decoration: none;
+  box-shadow: 0 6px 22px rgba(255, 61, 203, .25);
+}
+.button:active { transform: scale(.98); }
+
+details { border-top: 1px solid var(--card-edge); padding: 12px 0; }
+details:first-of-type { border-top: 0; padding-top: 0; }
+summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--heading);
+  list-style: none;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "+ "; color: var(--cyan); font-weight: 700; }
+details[open] summary::before { content: "– "; }
+
+footer {
+  padding-top: 8px;
+  padding-bottom: 40px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+footer nav { display: flex; justify-content: center; gap: 20px; }
+
+/* Opened from inside the app (?app=1): the app draws its own bar, so drop the page chrome. */
+.in-app .hero, .in-app footer, .in-app .tabs, .in-app .site-only { display: none; }
+.in-app main { padding-top: 16px; }
